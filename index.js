@@ -1,7 +1,7 @@
 import express from 'express';
 import ejsLayout from 'express-ejs-layouts';
 import path from 'path';
-import JobController from './controllers/job.controller.js';
+import JobController from './src/controllers/job.controller.js';
 
 
 const app = express();
@@ -11,8 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.use(ejsLayout);
-app.set('views', path.join(path.resolve(), 'views'));
-app.set("layout", path.join(path.resolve(), "views", "layouts", "layout.ejs"));
+app.set('views', path.join(path.resolve(), 'src','views'));
+app.set("layout", path.join(path.resolve() , 'src', "views", "layouts", "layout.ejs"));
 
 const jobController = new JobController();
 
