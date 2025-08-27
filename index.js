@@ -2,9 +2,18 @@ import express from 'express';
 import ejsLayout from 'express-ejs-layouts';
 import path from 'path';
 import JobController from './src/controllers/job.controller.js';
+import session from 'express-session';
+
 
 
 const app = express();
+
+app.use(session({
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,12 +28,12 @@ const jobController = new JobController();
 
 app.get("/", jobController.getLandingPage);
 app.get('/login', jobController.getLogin);
-app.get('/signup', jobController.getSignup);
+app.get('/register', jobController.getSignup);
 app.get('/applicants', jobController.getAllApplicants);
 app.get('/new-job', jobController.getNewJob);
 app.get('/jobs', jobController.getListJobs);
 
-app.post('/signup', jobController.postSignup);
+app.post('/register', jobController.postSignup);
 app.post('/login', jobController.postLogin);
 
 
