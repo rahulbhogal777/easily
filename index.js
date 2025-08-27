@@ -22,6 +22,7 @@ app.get('/login', jobController.getLogin);
 app.get('/signup', jobController.getSignup);
 app.get('/applicants', jobController.getAllApplicants);
 app.get('/new-job', jobController.getNewJob);
+app.get('/jobs', jobController.getListJobs);
 
 app.post('/signup', jobController.postSignup);
 app.post('/login', jobController.postLogin);

@@ -18,6 +18,13 @@ class JobController {
     getNewJob(req, res) {
         res.render('new-job');
     }
+    getListJobs(req, res) {
+        res.render('list-all-jobs');
+    }
+
+
+
+
     postSignup(req, res) {
        
         const { name, email, password } = req.body;
