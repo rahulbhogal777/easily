@@ -1,5 +1,6 @@
 
 import user from '../models/users.model.js';
+import jobsModel from '../models/jobs.model.js';
 
 class JobController {
 
@@ -19,7 +20,8 @@ class JobController {
         res.render('new-job');
     }
     getListJobs(req, res) {
-        res.render('list-all-jobs');
+        const jobs = jobsModel.getJobs();
+        res.render('list-all-jobs', {jobs});
     }
 
 
