@@ -2,9 +2,9 @@ class JobModel {
   constructor(
     id,
     jobcategory,
-    jobdesignation,
-    joblocation,
-    companyname,
+    job_designation,
+    job_location,
+    company_name,
     salary,
     applyby,
     skills_required,
@@ -14,15 +14,20 @@ class JobModel {
   ) {
     this.id = id;
     this.jobcategory = jobcategory;
-    this.jobdesignation = jobdesignation;
-    this.joblocation = joblocation;
-    this.companyname = companyname;
+    this.job_designation = job_designation;
+    this.job_location = job_location;
+    this.company_name = company_name;
     this.salary = salary;
     this.applyby = applyby;
     this.skills_required = skills_required;
     this.numberofopenings = numberofopenings;
-    this.jobposted = jobposted;
+    this.job_posted = jobposted;
     this.applicants = applicants;
+  }
+
+  static getDataById(id) {
+    const data = jobs.find((post) => post.id === id);
+    return data;
   }
 
   static getJobs() {
