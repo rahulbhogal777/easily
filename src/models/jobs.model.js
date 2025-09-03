@@ -30,6 +30,8 @@ class JobModel {
     }
 }
 
-var jobs = [];
+var jobs = [
+    
+];
 
 export default JobModel;
