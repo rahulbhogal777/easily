@@ -1,10 +1,14 @@
-<div class="container" style="max-width: 900px;">
+<div class="container" style="max-width: 900px">
   <div class="card shadow-sm rounded-4 border-0">
     <!-- Enhanced Header -->
-    <div class="card-header bg-white text-dark d-flex justify-content-between align-items-center py-3">
+    <div
+      class="card-header bg-white text-dark d-flex justify-content-between align-items-center py-3"
+    >
       <div>
         <h4 class="fw-bold mb-1">Applicants</h4>
-        <p class="text-muted small mb-0">List of all job applicants with their details</p>
+        <p class="text-muted small mb-0">
+          List of all job applicants with their details
+        </p>
       </div>
     </div>
 
@@ -28,12 +32,19 @@
               <input type="checkbox" class="form-check-input" />
             </td>
             <td class="d-flex align-items-center">
-              <img src="https://ui-avatars.com/api/?name=<%=applicant.name%>&background=random" class="avatar-img me-2"/>
+              <img
+                src="https://ui-avatars.com/api/?name=<%=applicant.name%>&background=random"
+                class="avatar-img me-2"
+              />
               <span><%=applicant.name%></span>
             </td>
             <td><%=applicant.email%></td>
             <td>
-              <a class="badge badge-primary" href="http://localhost:3200/uploads/<%=applicant.resumePath%>" target="_blank">
+              <a
+                class="badge badge-primary"
+                href="http://localhost:3200/uploads/<%=applicant.resumePath%>"
+                target="_blank"
+              >
                 View Resume
               </a>
             </td>
