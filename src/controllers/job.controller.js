@@ -43,6 +43,7 @@ class JobController {
     console.log(foundUser);
     if (foundUser) {
       req.session.user = foundUser;
+      // res.render("landing-page");
       res.redirect("/");
     } else {
       res.render("404");
