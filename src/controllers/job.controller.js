@@ -37,12 +37,14 @@ class JobController {
     user.addUser(name, email, password);
     res.render("user-login");
   }
-  postLogin(req, res) {
+  postLogin(req, res, next) {
     const { email, password } = req.body;
     const foundUser = user.findUser(email, password);
     console.log(foundUser);
     if (foundUser) {
+      req.session.user = foundUser;
       res.render("landing-page");
+      next();
     } else {
       res.render("404");
     }

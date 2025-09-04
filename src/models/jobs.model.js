@@ -6,21 +6,21 @@ class JobModel {
     job_location,
     company_name,
     salary,
-    applyby,
+    apply_by,
     skills_required,
     numberofopenings,
     jobposted,
     applicants
   ) {
     this.id = id;
-    this.jobcategory = jobcategory;
+    this.job_category = jobcategory;
     this.job_designation = job_designation;
     this.job_location = job_location;
     this.company_name = company_name;
     this.salary = salary;
-    this.applyby = applyby;
+    this.apply_by = apply_by;
     this.skills_required = skills_required;
-    this.numberofopenings = numberofopenings;
+    this.number_of_openings = numberofopenings;
     this.job_posted = jobposted;
     this.applicants = applicants;
   }
@@ -41,13 +41,13 @@ var jobs = [
     "IT",
     "SDE",
     "Gurgaon HR IND Remote",
-    "Coding Ninjas",
+    "CodingNinjas",
     "6-10 LPA",
     "Apply By 30 Aug 2023",
     ["React", "NodeJS", "JS", "SQL", "MongoDB", "Express", "AWS"],
     10,
     "23 july 2023",
-    5
+    []
   ),
   new JobModel(
     2,
@@ -60,7 +60,7 @@ var jobs = [
     ["Angular", "JS", "SQL", "MongoDB", "Express", "AWS"],
     10,
     "23 july 2023",
-    5
+    []
   ),
   new JobModel(
     3,
@@ -73,7 +73,7 @@ var jobs = [
     ["React", "NodeJS", "JS", "SQL", "MongoDB", "Express", "AWS"],
     10,
     "23 july 2023",
-    5
+    []
   ),
 ];
 

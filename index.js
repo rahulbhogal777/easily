@@ -3,6 +3,8 @@ import ejsLayout from "express-ejs-layouts";
 import path from "path";
 import JobController from "./src/controllers/job.controller.js";
 import session from "express-session";
+import cookieParser from "cookie-parser";
+import { user } from "./src/middleware/user.middleware.js";
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.use(cookieParser());
 
 app.use(ejsLayout);
 app.set("view engine", "ejs")
@@ -37,8 +41,8 @@ app.get("/new-job", jobController.getNewJob);
 app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
 
-app.post("/register", jobController.postSignup);
-app.post("/login", jobController.postLogin);
+app.post("/signup", jobController.postSignup);
+app.post("/login", jobController.postLogin, user);
 
 app.listen(3400, () => {
   console.log("Server is running on port 3400");
