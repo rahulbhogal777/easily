@@ -31,6 +31,8 @@ app.set(
   path.join(path.resolve(), "src", "views", "layouts", "layout.ejs")
 );
 
+app.use(user);
+
 const jobController = new JobController();
 
 app.get("/", jobController.getLandingPage);
@@ -42,7 +44,7 @@ app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
 
 app.post("/signup", jobController.postSignup);
-app.post("/login", jobController.postLogin, user);
+app.post("/login", jobController.postLogin);
 
 app.listen(3400, () => {
   console.log("Server is running on port 3400");
