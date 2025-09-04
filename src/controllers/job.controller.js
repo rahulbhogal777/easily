@@ -31,6 +31,9 @@ class JobController {
       res.render("404");
     }
   }
+  getPostJob(req, res) {
+    res.render("new-job");
+  }
 
   postSignup(req, res) {
     const { name, email, password } = req.body;

@@ -39,9 +39,9 @@ app.get("/", jobController.getLandingPage);
 app.get("/login", jobController.getLogin);
 app.get("/signup", jobController.getSignup);
 app.get("/applicants", jobController.getAllApplicants);
-app.get("/new-job", jobController.getNewJob);
 app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
+app.get("/postjob", jobController.getPostJob);
 
 app.post("/signup", jobController.postSignup);
 app.post("/login", jobController.postLogin);
