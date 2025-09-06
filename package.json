@@ -6,6 +6,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.18.2",
     "express-validator": "^7.2.1",
+    "multer": "^2.0.2",
     "path": "^0.12.7"
   },
   "name": "asset_0000000000004942_1747654797_views",
