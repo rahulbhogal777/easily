@@ -5,6 +5,7 @@ import JobController from "./src/controllers/job.controller.js";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import { user } from "./src/middleware/user.middleware.js";
+import validateSignUp from "./src/middleware/validation.middleware.js";
 
 const app = express();
 
@@ -37,13 +38,13 @@ const jobController = new JobController();
 
 app.get("/", jobController.getLandingPage);
 app.get("/login", jobController.getLogin);
-app.get("/signup", jobController.getSignup);
+app.get("/signup",jobController.getSignup);
 app.get("/applicants", jobController.getAllApplicants);
 app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
 app.get("/postjob", jobController.getPostJob);
 
-app.post("/signup", jobController.postSignup);
+app.post("/signup", validateSignUp,jobController.postSignup);
 app.post("/login", jobController.postLogin);
 
 app.listen(3400, () => {

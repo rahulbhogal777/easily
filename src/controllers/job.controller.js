@@ -6,7 +6,7 @@ class JobController {
     res.render("user-login");
   }
   getSignup(req, res) {
-    res.render("user-signup");
+    res.render("user-signup", {errorMessage: null});
   }
   getAllApplicants(req, res) {
     res.render("all-applicants");

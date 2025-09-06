@@ -5,6 +5,9 @@
         <h2 class="text-center mb-4" style="color: #181642">
           Signup to Easily
         </h2>
+        <% if(errorMessage){ %> <% errorMessage.forEach((error) => { %>
+        <div class="alert alert-danger" role="alert"><%= error.msg %></div>
+        <% }) %> <% } %>
         <form action="/signup" method="post">
           <div class="mb-3">
             <div class="input-group">
@@ -16,7 +19,6 @@
                 class="form-control border-start-0 shadow-none"
                 placeholder="Enter your name"
                 name="name"
-                required
               />
             </div>
           </div>
@@ -30,7 +32,6 @@
                 class="form-control border-start-0 shadow-none"
                 placeholder="Enter your email"
                 name="email"
-                required
               />
             </div>
           </div>
@@ -44,7 +45,6 @@
                 class="form-control border-start-0 shadow-none"
                 placeholder="Enter your password"
                 name="password"
-                required
               />
             </div>
           </div>
