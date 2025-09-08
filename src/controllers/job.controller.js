@@ -6,7 +6,7 @@ class JobController {
     res.render("user-login");
   }
   getSignup(req, res) {
-    res.render("user-signup", {errorMessage: null});
+    res.render("user-signup", { errorMessage: null });
   }
   getAllApplicants(req, res) {
     res.render("all-applicants");
@@ -24,7 +24,6 @@ class JobController {
   getJobDetail(req, res) {
     const id = parseInt(req.params.id);
     const data = jobsModel.getDataById(id);
-    console.log(data);
     if (data) {
       res.render("job-details", { data, user: null });
     } else {
@@ -33,6 +32,17 @@ class JobController {
   }
   getPostJob(req, res) {
     res.render("new-job");
+  }
+  getAllApplicants(req, res) {
+    const id = parseInt(req.params.id);
+    const index = jobsModel.getIndexById(id);
+    if (index !== -1) {
+      const allApplicants = jobsModel.applicantsData(index);
+      console.log(allApplicants);
+      res.render("all-applicants", { allApplicants });
+    } else {
+      res.render("404");
+    }
   }
 
   postSignup(req, res) {
@@ -43,7 +53,6 @@ class JobController {
   postLogin(req, res) {
     const { email, password } = req.body;
     const foundUser = user.findUser(email, password);
-    console.log(foundUser);
     if (foundUser) {
       req.session.user = foundUser;
       // res.render("landing-page");
@@ -55,16 +64,14 @@ class JobController {
   postaddApplicant(req, res) {
     const id = parseInt(req.params.id);
     const index = jobsModel.getIndexById(id);
-    console.log(index);
-    console.log(req.body);
     if (index !== -1) {
       const { name, email, contact } = req.body;
-      const resume = 'files/' + req.file.filename;
+      const resume = "files/" + req.file.filename;
       const newApplicant = {
         name,
         email,
         contact,
-        resume
+        resume,
       };
       jobsModel.newApplicant(index, newApplicant);
       res.redirect("/job/" + id);

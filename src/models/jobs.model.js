@@ -52,6 +52,12 @@ class JobModel {
     jobs[index].applicants.push(applicantDetail);
   }
 
+  static applicantsData(index) {
+    const applicantData = jobs[index].applicants;
+    return applicantData;
+  }
+
+
   static getJobs() {
     return jobs;
   }

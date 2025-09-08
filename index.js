@@ -45,6 +45,7 @@ app.get("/applicants", jobController.getAllApplicants);
 app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
 app.get("/postjob", jobController.getPostJob);
+app.get("/job/applicants/:id", jobController.getAllApplicants);
 
 app.post("/signup", validateSignUp, jobController.postSignup);
 app.post("/login", jobController.postLogin);
