@@ -35,6 +35,17 @@ class JobModel {
     return index;
   }
 
+  static newApplicant(index, applicant) {
+    const applicantDetail = {
+      id: jobs[index].applicants.length + 1,
+      name: applicant.name,
+      email: applicant.email,
+      contact: applicant.contact,
+      resume: applicant.resume,
+    };
+    jobs[index].applicants.push(applicantDetail);
+  }
+
   static getJobs() {
     return jobs;
   }

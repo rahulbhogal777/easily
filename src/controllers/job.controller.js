@@ -52,6 +52,26 @@ class JobController {
       res.render("404");
     }
   }
+  postaddApplicant(req, res) {
+    const id = parseInt(req.params.id);
+    const index = jobsModel.getIndexById(id);
+    console.log(index);
+    console.log(req.body);
+    if (index !== -1) {
+      const { name, email, contact } = req.body;
+      const resume = 'files/' + req.file.filename;
+      const newApplicant = {
+        name,
+        email,
+        contact,
+        resume
+      };
+      jobsModel.newApplicant(index, newApplicant);
+      res.redirect("/job/" + id);
+    } else {
+      res.render("404");
+    }
+  }
 }
 
 export default JobController;
