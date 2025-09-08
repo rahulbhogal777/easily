@@ -30,6 +30,11 @@ class JobModel {
     return data;
   }
 
+  static getIndexById(id) {
+    const index = jobs.findIndex((post) => post.id === id);
+    return index;
+  }
+
   static getJobs() {
     return jobs;
   }
