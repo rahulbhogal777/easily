@@ -1,33 +1,31 @@
 import nodemailer from "nodemailer";
 import fs from "fs";
 
-const template = fs.readFileSync("/html/mailTamplate.html", { encoding: "utf-8" });
+const template = fs.readFileSync("public/html/mailTemplate.html", { encoding: "utf-8" });
 
 export const mailMiddleware = (req, res, next) => {
-    const transporter = nodemailer.createTransport({
+
+    try {
+        const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: "rahulbhogal77@gmail.com",
+            pass: "dsqj cprc awgj zajm",
         }
     });
 
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: "rahulbhogal77@gmail.com",
         to: req.body.email,
         subject: 'Welcome to Our Service',
         html: template
-    }
-
-    (async () => { 
-        try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log("Email sent: " + info.response);
-        } catch (error) {
-            console.log("Error sending email: ", error);
-            res.render("404");
         }
-    })();
-    
-    next();
+        const info = transporter.sendMail(mailOptions);
+        console.log("Email sent: " + req.body.email);
+        next();
+    } catch (error) {
+        console.log("Error sending email: ", error);
+        res.render("404");
+    }
 }
+   

@@ -9,6 +9,7 @@ import validateSignUp from "./src/middleware/validation.middleware.js";
 import { uploadFile } from "./src/middleware/fileUpload.middleware.js";
 import bodyParser from "body-parser";
 import { auth } from "./src/middleware/auth.middleware.js";
+import { mailMiddleware } from "./src/middleware/mail.middleware.js"; 
 
 const app = express();
 
@@ -51,11 +52,12 @@ app.get("/logout", jobController.getLogOut);
 app.post("/signup", validateSignUp, jobController.postSignup);
 app.post("/login", jobController.postLogin);
 app.post(
-  "/apply/:id",
+  "/apply/:id", 
   uploadFile.single("resume"),
+  mailMiddleware,
   jobController.postaddApplicant
 );
-app.post("/jobs", uploadFile.single("logo"), jobController.postAddNewJob);
+app.post("/jobs",uploadFile.single("logo"), jobController.postAddNewJob);
 
 app.listen(3200, () => {
   console.log("Server is running on port 3200");
