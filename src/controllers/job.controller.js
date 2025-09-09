@@ -1,5 +1,6 @@
 import user from "../models/users.model.js";
 import jobsModel from "../models/jobs.model.js";
+import path from "path";
 
 class JobController {
   getLogin(req, res) {
@@ -66,7 +67,7 @@ class JobController {
     const index = jobsModel.getIndexById(id);
     if (index !== -1) {
       const { name, email, contact } = req.body;
-      const resume = "files/" + req.file.filename;
+      const resume = req.file.filename;
       const newApplicant = {
         name,
         email,

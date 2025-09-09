@@ -51,6 +51,6 @@ app.post("/signup", validateSignUp, jobController.postSignup);
 app.post("/login", jobController.postLogin);
 app.post("/apply/:id", uploadFile.single("resume"), jobController.postaddApplicant);
 
-app.listen(3400, () => {
-  console.log("Server is running on port 3400");
+app.listen(3200, () => {
+  console.log("Server is running on port 3200");
 });

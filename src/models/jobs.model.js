@@ -110,7 +110,7 @@ var jobs = [
     "3-5 yrs",
     "23 july 2023",
     [],
-    "https://www.merchantpaymentsecosystem.com/img/companies/juspay.jpg"
+    "https://assets.indiaonline.in/businessimg/products/450/3123665_bb857.png"
   ),
 ];
 
