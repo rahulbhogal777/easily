@@ -1,11 +1,7 @@
 import nodemailer from "nodemailer";
 import fs from "fs";
 
-const template = fs.readFile("/html/mailTamplate.html", { encoding: "utf-8" }, (err, data) => {
-    if (err) {
-        console.log("Error reading file:", err);
-    }
-});
+const template = fs.readFileSync("/html/mailTamplate.html", { encoding: "utf-8" });
 
 export const mailMiddleware = (req, res, next) => {
     const transporter = nodemailer.createTransport({
