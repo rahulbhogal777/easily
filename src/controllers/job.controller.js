@@ -1,6 +1,5 @@
 import user from "../models/users.model.js";
 import jobsModel from "../models/jobs.model.js";
-import path from "path";
 
 class JobController {
   getLogin(req, res) {
@@ -20,6 +19,7 @@ class JobController {
   }
   getListJobs(req, res) {
     const jobs = jobsModel.getJobs();
+    console.log(jobs);
     res.render("list-all-jobs", { jobs });
   }
   getJobDetail(req, res) {
@@ -39,11 +39,20 @@ class JobController {
     const index = jobsModel.getIndexById(id);
     if (index !== -1) {
       const allApplicants = jobsModel.applicantsData(index);
-      console.log(allApplicants);
       res.render("all-applicants", { allApplicants });
     } else {
       res.render("404");
     }
+  }
+  getLogOut(req, res) {
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.clearCookie("user");
+        res.redirect("/");
+      }
+    });
   }
 
   postSignup(req, res) {
@@ -79,6 +88,38 @@ class JobController {
     } else {
       res.render("404");
     }
+  }
+  postAddNewJob(req, res) {
+    const {
+      job_category,
+      job_designation,
+      job_location,
+      company_name,
+      company_founded,
+      employess,
+      salary,
+      number_of_openings,
+      experience,
+      skills_required,
+      apply_by,
+    } = req.body;
+    const logo = '/upload/' + req.file.filename;
+    const newJob = {
+      job_category,
+      job_designation,
+      job_location,
+      company_name,
+      company_founded,
+      employess,
+      salary,
+      number_of_openings,
+      experience,
+      skills_required,
+      apply_by,
+      logo,
+    };
+    jobsModel.addNewJob(newJob);
+    res.redirect("/jobs");
   }
 }
 

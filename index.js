@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import { user } from "./src/middleware/user.middleware.js";
 import validateSignUp from "./src/middleware/validation.middleware.js";
 import { uploadFile } from "./src/middleware/fileUpload.middleware.js";
+import bodyParser from "body-parser";
 
 
 const app = express();
@@ -20,8 +21,8 @@ app.use(
   })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.use(cookieParser());
@@ -46,10 +47,12 @@ app.get("/jobs", jobController.getListJobs);
 app.get("/job/:id", jobController.getJobDetail);
 app.get("/postjob", jobController.getPostJob);
 app.get("/job/applicants/:id", jobController.getAllApplicants);
+app.get("/logout", jobController.getLogOut);
 
 app.post("/signup", validateSignUp, jobController.postSignup);
 app.post("/login", jobController.postLogin);
 app.post("/apply/:id", uploadFile.single("resume"), jobController.postaddApplicant);
+app.post("/jobs", uploadFile.single("logo"), jobController.postAddNewJob);
 
 app.listen(3200, () => {
   console.log("Server is running on port 3200");

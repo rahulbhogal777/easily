@@ -57,6 +57,30 @@ class JobModel {
     return applicantData;
   }
 
+  static addNewJob(newJob) {
+    const job = {
+      id: jobs.length + 1,
+      job_category: newJob.job_category,
+      job_designation: newJob.job_designation,
+      job_location: newJob.job_location,
+      company_name: newJob.company_name,
+      company_founded: newJob.company_founded,
+      salary: newJob.salary,
+      apply_by: newJob.apply_by,
+      skills_required: newJob.skills_required,
+      number_of_openings: newJob.number_of_openings,
+      experience: newJob.experience,
+      job_posted: new Date().toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+      applicants: [],
+      logo: newJob.logo,
+    };
+    jobs.push(job);
+  }
+
 
   static getJobs() {
     return jobs;
