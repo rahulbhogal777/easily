@@ -26,7 +26,7 @@ class JobController {
     const id = parseInt(req.params.id);
     const data = jobsModel.getDataById(id);
     if (data) {
-      res.render("job-details", { data, user: null });
+      res.render("job-details", { data, user: req.session.user || null });
     } else {
       res.render("404");
     }
