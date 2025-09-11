@@ -19,7 +19,6 @@ class JobController {
   }
   getListJobs(req, res) {
     const jobs = jobsModel.getJobs();
-    console.log(jobs);
     res.render("list-all-jobs", { jobs });
   }
   getJobDetail(req, res) {
@@ -53,6 +52,21 @@ class JobController {
         res.redirect("/");
       }
     });
+  }
+  getUpdateJob(req, res) {
+    const id = parseInt(req.params.id);
+    const job = jobsModel.getDataById(id);
+    console.log(job);
+    if (job) {
+      res.render("update-job", { job });
+    } else {
+      res.render("404");
+    }
+  }
+  getDeleteJob(req, res) {
+    const id = parseInt(req.params.id);
+    jobsModel.deleteJob(id);
+    res.redirect("/jobs");
   }
 
   postSignup(req, res) {
@@ -96,21 +110,21 @@ class JobController {
       job_location,
       company_name,
       company_founded,
-      employess,
+      employees,
       salary,
       number_of_openings,
       experience,
       skills_required,
       apply_by,
     } = req.body;
-    const logo = '/upload/' + req.file.filename;
+    const logo = "/upload/" + req.file.filename;
     const newJob = {
       job_category,
       job_designation,
       job_location,
       company_name,
       company_founded,
-      employess,
+      employees,
       salary,
       number_of_openings,
       experience,
@@ -119,6 +133,40 @@ class JobController {
       logo,
     };
     jobsModel.addNewJob(newJob);
+    res.redirect("/jobs");
+  }
+  postUpdateJob(req, res) {
+    const id = parseInt(req.params.id);
+    const {
+      job_category,
+      job_designation,
+      job_location,
+      company_name,
+      company_founded,
+      employees,
+      salary,
+      number_of_openings,
+      experience,
+      skills_required,
+      apply_by,
+    } = req.body;
+    const logo = req.file ? "/upload/" + req.file.filename : "";
+    const job = {
+      id,
+      job_category,
+      job_designation,
+      job_location,
+      company_name,
+      company_founded,
+      employees,
+      salary,
+      number_of_openings,
+      experience,
+      skills_required,
+      apply_by,
+      logo,
+    };
+    jobsModel.updateJob(job);
     res.redirect("/jobs");
   }
 }

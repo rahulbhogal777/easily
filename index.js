@@ -48,6 +48,8 @@ app.get("/job/:id", jobController.getJobDetail);
 app.get("/postjob", jobController.getPostJob);
 app.get("/job/applicants/:id", auth, jobController.getAllApplicants);
 app.get("/logout", jobController.getLogOut);
+app.get("/job/update/:id", jobController.getUpdateJob);
+app.get("/job/delete/:id", jobController.getDeleteJob);
 
 app.post("/signup", validateSignUp, jobController.postSignup);
 app.post("/login", jobController.postLogin);
@@ -57,7 +59,8 @@ app.post(
   mailMiddleware,
   jobController.postaddApplicant
 );
-app.post("/jobs",uploadFile.single("logo"), jobController.postAddNewJob);
+app.post("/jobs", uploadFile.single("logo"), jobController.postAddNewJob);
+app.post("/job/update/:id",uploadFile.single("logo") ,jobController.postUpdateJob);
 
 app.listen(3200, () => {
   console.log("Server is running on port 3200");

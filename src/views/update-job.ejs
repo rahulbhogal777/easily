@@ -1,7 +1,7 @@
 <div class="modern-form-wrapper">
   <div class="form-glass-card">
     <h2 class="form-title">Update Job</h2>
-    <form action="/job/update/<%=job.id%>" method="post">
+    <form action="/job/update/<%=job.id%>" method="post" enctype="multipart/form-data">
       <!-- Job Category -->
       <div class="input-group">
         <label for="job_category" class="input-label">Job Category</label>
@@ -95,9 +95,13 @@
         </select>
       </div>
 
-      <div class="input-group">
+      <!-- <div class="input-group">
         <label for="logo" class="input-label">Company Logo (PNG, JPG, JPEG, GIF):</label>
         <input type="file" value="<%=job.logo%>" name="logo" class="input-field" accept=".png, .jpg, .jpeg, .gif">
+      </div> -->
+      <div class="input-group">
+        <label for="logo" class="input-label">Company Logo (PNG, JPG, JPEG, GIF):</label>
+        <input type="file" name="logo" class="input-field" accept=".png, .jpg, .jpeg, .gif">
       </div>
 
       <!-- Apply By -->
